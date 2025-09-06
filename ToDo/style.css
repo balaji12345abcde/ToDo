@@ -1,0 +1,94 @@
+body {
+    background-color: aqua;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+}
+
+.task-box {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
+    width: 350px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+}
+
+li {
+    background: #fff;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    word-break: break-word;
+    box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
+    /* Fix text overflow */
+}
+
+.task-text {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.actions i {
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    background: #eee;
+    transition: 0.3s;
+}
+
+.actions i:hover {
+    background: #ddd;
+}
+
+.input-box {
+    display: flex;
+    gap: 10px;
+}
+
+.input-box input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.input-box button {
+    padding: 10px 16px;
+    border: none;
+    background: #f7d75d;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.input-box button:hover {
+    background: #e6c850;
+}

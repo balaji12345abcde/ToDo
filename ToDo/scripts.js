@@ -1,47 +1,43 @@
+function loadTask() {
+    const text_lsit = document.getElementById("task-list");
+    text_lsit.innerHTML = "";
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.forEach((item, index) => {
+        const li = document.createElement("li");
+        const span = document.createElement("span");
+        span.innerHTML = item;
+        const div = document.createElement("div");
+        div.innerHTML = `<button onClick="update(${index})" class="update"></button>
+                        <button onClick="trace(${index})" class="trace"></button>`;
+        li.appendChild(span);
+        li.appendChild(div);
+        text_lsit.appendChild(li);
+    });
+}
 function addTask() {
-    let input = document.getElementById("task-input");
-    let taskValue = input.value.trim();
-
-    if (taskValue === "") {
-        alert("Please enter a task!");
+    const text = document.getElementById("task-input").value.trim();
+    if (text === "") {
         return;
     }
-
-    let li = document.createElement("li");
-
-    // Task text
-    let span = document.createElement("span");
-    span.classList.add("task-text");
-    span.textContent = taskValue;
-
-    // Action buttons
-    let actions = document.createElement("div");
-    actions.classList.add("actions");
-
-    // Edit button
-    let editBtn = document.createElement("i");
-    editBtn.classList.add("fa", "fa-rotate-right");
-    editBtn.onclick = function () {
-        let newTask = prompt("Edit your task:", span.textContent);
-        if (newTask !== null && newTask.trim() !== "") {
-            span.textContent = newTask.trim();
-        }
-    };
-
-    // Delete button
-    let delBtn = document.createElement("i");
-    delBtn.classList.add("fa", "fa-trash");
-    delBtn.onclick = function () {
-        li.remove();
-    };
-
-    actions.appendChild(editBtn);
-    actions.appendChild(delBtn);
-
-    li.appendChild(span);
-    li.appendChild(actions);
-
-    document.getElementById("task-list").appendChild(li);
-
-    input.value = "";
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.push(text);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    document.getElementById("task-input").value = "";
+    loadTask();
 }
+function trace(index) {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.splice(index, 1);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    loadTask();
+}
+function update(index) {
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const newtask = prompt("Edit task:", tasks[index]);
+    if (newtask !== null && newtask.trim() != "") {
+        tasks[index] = newtask.trim();
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        loadTask();
+    }
+}
+loadTask();
